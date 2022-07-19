@@ -1,0 +1,134 @@
+<div class="create-sale form-wrapper">
+  <form class="form-group" [formGroup]="salesForm" (ngSubmit)="CreateSale()">
+    <legend class="form-heading">Create Sale</legend>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="form-group dateOfPurchase">
+        <label for="dateOfPurchase" class="form-label required"
+          >Date Of Purchase</label
+        >
+        <input
+          readonly
+          type="date"
+          id="dateOfPurchase"
+          class="form-control"
+          formControlName="dateOfPurchase"
+          [ngClass]="{
+            'is-invalid': isInValid(value('dateOfPurchase')),
+            'is-valid': isValid(value('dateOfPurchase'))
+          }"
+        />
+
+        <small
+          *ngIf="
+              value('dateOfPurchase').touched &&
+              value('dateOfPurchase').errors?.['required']
+            "
+          class="invalid-feedback"
+          >{{ 'Date Of Purchase is Mandatory.' }}</small
+        >
+      </div>
+      <div class="form-group SellingPrice">
+        <label for="sellingPrice" class="form-label required"
+          >Selling Price</label
+        >
+        <input
+          max="1000000"
+          type="number"
+          id="sellingPrice"
+          class="form-control"
+          formControlName="sellingPrice"
+          [ngClass]="{
+            'is-invalid': isInValid(value('sellingPrice')),
+            'is-valid': isValid(value('sellingPrice'))
+          }"
+        />
+
+        <small
+          *ngIf="
+              value('sellingPrice').touched &&
+              value('sellingPrice').errors?.['required']
+            "
+          class="invalid-feedback"
+          >{{ 'Selling Price is Mandatory.' }}</small
+        >
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="form-group Cars">
+        <label for="cars" class="form-label required">Cars</label>
+        <div class="mb-3">
+          <app-filter-cars width="w-full"></app-filter-cars>
+        </div>
+        <select
+          multiple
+          id="cars"
+          class="form-select"
+          formControlName="cars"
+          [ngClass]="{
+            'is-invalid': isInValid(value('cars')),
+            'is-valid': isValid(value('cars'))
+          }"
+        >
+          <option [value]="car" *ngFor="let car of cars$ | filterCars | async">
+            {{ car.id }}
+          </option>
+        </select>
+
+        <small
+          *ngIf="
+              value('cars').touched &&
+              value('cars').errors?.['required']
+            "
+          class="invalid-feedback"
+          >{{ 'Select at least 1 Car.' }}</small
+        >
+      </div>
+
+      <div class="form-group Customers">
+        <label for="customers" class="form-label required">Customers</label>
+        <div class="mb-3">
+          <app-filter-customers width="w-full"></app-filter-customers>
+        </div>
+        <select
+          multiple
+          id="customers"
+          class="form-select"
+          formControlName="customers"
+          [ngClass]="{
+            'is-invalid': isInValid(value('customers')),
+            'is-valid': isValid(value('customers'))
+          }"
+        >
+          <option
+            [value]="customer"
+            *ngFor="let customer of customers$ | filterCustomers | async"
+          >
+            {{ customer.id }}
+          </option>
+        </select>
+
+        <small
+          *ngIf="
+              value('customers').touched &&
+              value('customers').errors?.['required']
+            "
+          class="invalid-feedback"
+          >{{ 'Select at least 1 Customer.' }}</small
+        >
+      </div>
+    </div>
+
+    <button
+      class="btn"
+      type="submit"
+      [disabled]="salesForm.invalid"
+      [ngClass]="{
+        'form-valid': !salesForm.invalid,
+        'form-invalid': salesForm.invalid
+      }"
+    >
+      Create
+    </button>
+  </form>
+</div>

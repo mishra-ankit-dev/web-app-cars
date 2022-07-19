@@ -1,0 +1,43 @@
+<div class="m-4">
+  <app-sales-filter></app-sales-filter>
+  <ng-container *ngIf="sales$ | async as sales; else filteredSalesNotAvailable">
+    <ng-container
+      *ngIf="
+        sales | filterSales | async as filteredSales;
+        else loadingFilteredSales
+      "
+    >
+      <app-sale
+        class="my-4"
+        *ngFor="let filteredSale of filteredSales; let indexOfSale = index"
+        [filteredSale]="filteredSale"
+        [filteredSaleIndex]="indexOfSale"
+        (onSaleDelete)="onSaleDelete($event)"
+      ></app-sale>
+
+      <app-spinner
+        [spinnerSize]="'1.5rem'"
+        *ngIf="sales.length > 0 && (filteredSales | json) === '[]'"
+        >{{
+          ' No Sales found as per the searched keyword. Try with some different
+            keyword and filter option.'
+        }}</app-spinner
+      >
+    </ng-container>
+    <app-spinner [spinnerSize]="'1.5rem'" *ngIf="sales.length === 0">{{
+      ' No Sale found to display.'
+    }}</app-spinner>
+  </ng-container>
+
+  <ng-template #filteredSalesNotAvailable>
+    <app-spinner [spinnerSize]="'1.5rem'">{{
+      ' Fetching Sales data from backend.....'
+    }}</app-spinner>
+  </ng-template>
+
+  <ng-template #loadingFilteredSales>
+    <app-spinner [spinnerSize]="'1.5rem'">{{
+      ' Applying filter based on keyword.....'
+    }}</app-spinner>
+  </ng-template>
+</div>

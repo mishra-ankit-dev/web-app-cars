@@ -1,0 +1,47 @@
+<div class="mx-5 my-3 table-responsive">
+  <table
+    class="table w-full text-sm bg-gray-300 border-collapse dark:text-white dark:bg-gray-700"
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>ID</th>
+        <th>Date Of Purchase</th>
+        <th>Customer</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ saleIndex }}</td>
+        <td>{{ sale.id }}</td>
+        <td>{{ sale.dateOfPurchase }}</td>
+        <td>
+          <span class="px-0.5" *ngFor="let customer of sale.customers">
+            {{ customer.id + ',' }}</span
+          >
+        </td>
+        <td (click)="ViewSale(sale)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-eye-fill primary"
+          ></i>
+        </td>
+        <td (click)="EditSale(sale)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-pencil-square secondary"
+          ></i>
+        </td>
+        <td (click)="DeleteSale(sale)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-archive-fill danger"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

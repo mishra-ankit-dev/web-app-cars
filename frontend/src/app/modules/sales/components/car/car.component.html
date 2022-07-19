@@ -1,0 +1,71 @@
+<div class="mx-3 my-3 table-responsive caption-top">
+  <caption class="w-full text-2xl font-semibold text-center">
+    Cars
+  </caption>
+  <table
+    class="table w-full text-sm bg-gray-300 border-collapse dark:text-white dark:bg-gray-700"
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>id</th>
+        <th>Segment</th>
+        <th>FuelType</th>
+        <th>PowerSteering</th>
+        <th>AirBags</th>
+        <th>SunRoof</th>
+        <th>MattFinish</th>
+        <th>MusicSystem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars; let index = index">
+        <td>{{ index }}</td>
+        <td>{{ car.id }}</td>
+        <td>{{ car.segment }}</td>
+        <td>{{ car.fuel }}</td>
+        <td>
+          <i
+            class="bi"
+            aria-hidden="true"
+            [ngClass]="
+              car.powerSteering ? 'bi-check-lg success' : 'bi-x-lg danger'
+            "
+          ></i>
+        </td>
+        <td>
+          <i
+            class="bi"
+            aria-hidden="true"
+            [ngClass]="car.airBags ? 'bi-check-lg success' : 'bi-x-lg danger'"
+          ></i>
+        </td>
+        <td>
+          <i
+            class="bi"
+            aria-hidden="true"
+            [ngClass]="car.sunRoof ? 'bi-check-lg success' : 'bi-x-lg danger'"
+          ></i>
+        </td>
+        <td>
+          <i
+            class="bi"
+            aria-hidden="true"
+            [ngClass]="
+              car.mattFinish ? 'bi-check-lg success' : 'bi-x-lg danger'
+            "
+          ></i>
+        </td>
+        <td>
+          <i
+            class="bi"
+            aria-hidden="true"
+            [ngClass]="
+              car.musicSystem ? 'bi-check-lg success' : 'bi-x-lg danger'
+            "
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

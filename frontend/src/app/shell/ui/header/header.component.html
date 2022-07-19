@@ -1,0 +1,27 @@
+<header
+  style="min-height: 64px"
+  class="fixed top-0 w-full shadow-lg bg-gray-50 dark:bg-gray-600 backdrop-blur-lg backdrop-filter"
+>
+  <nav
+    class="container flex items-center justify-between h-full py-2 mx-auto center"
+  >
+    <a
+      [routerLink]="[path.base.home]"
+      class="flex flex-row px-2 text-2xl font-bold no-underline cursor-pointer"
+    >
+      <img alt="" class="w-8 h-8 mx-1" [src]="'/static/frontend/favicon.ico'" />
+      <span class="dark:text-gray-100">Web</span>App
+    </a>
+
+    <app-navbar class="hidden md:block"></app-navbar>
+
+    <button
+      type="button"
+      id="menu-toggler"
+      class="md:hidden btn"
+      aria-label="navbar-toggle"
+    >
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+  </nav>
+</header>

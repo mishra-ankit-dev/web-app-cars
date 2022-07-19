@@ -1,0 +1,29 @@
+<div class="mx-3 my-3 table-responsive caption-top">
+  <caption class="w-full text-2xl font-semibold text-center">
+    Customers
+  </caption>
+  <table
+    class="table w-full text-sm bg-gray-300 border-collapse dark:text-white dark:bg-gray-700"
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>id</th>
+        <th>Gender</th>
+        <th>IncomeCategory</th>
+        <th>Region</th>
+        <th>MaritalStatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers; let index = index">
+        <td>{{ index }}</td>
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.gender }}</td>
+        <td>{{ customer.income }}</td>
+        <td>{{ customer.region }}</td>
+        <td>{{ customer.maritalStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

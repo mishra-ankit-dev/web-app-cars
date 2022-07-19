@@ -1,0 +1,75 @@
+<ng-container *ngIf="sale$ | async as sale">
+  <div class="create-sale form-wrapper">
+    <form class="form-group" [formGroup]="salesForm" (ngSubmit)="UpdateSale()">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group dateOfPurchase">
+          <label for="dateOfPurchase" class="form-label required"
+            >Date Of Purchase</label
+          >
+          <input
+            readonly
+            type="date"
+            id="dateOfPurchase"
+            class="form-control"
+            formControlName="dateOfPurchase"
+            [ngClass]="{
+              'is-invalid': isInValid(value('dateOfPurchase')),
+              'is-valid': isValid(value('dateOfPurchase'))
+            }"
+          />
+
+          <small
+            *ngIf="
+                  value('dateOfPurchase').touched &&
+                  value('dateOfPurchase').errors?.['required']
+                "
+            class="invalid-feedback"
+            >{{ 'Date Of Purchase is Mandatory.' }}</small
+          >
+        </div>
+        <div class="form-group SellingPrice">
+          <label for="sellingPrice" class="form-label required"
+            >Selling Price</label
+          >
+          <input
+            max="1000000"
+            type="number"
+            id="sellingPrice"
+            class="form-control"
+            [readonly]="mode === 'view'"
+            formControlName="sellingPrice"
+            [ngClass]="{
+              'is-invalid': isInValid(value('sellingPrice')),
+              'is-valid': isValid(value('sellingPrice'))
+            }"
+          />
+
+          <small
+            *ngIf="
+                  value('sellingPrice').touched &&
+                  value('sellingPrice').errors?.['required']
+                "
+            class="invalid-feedback"
+            >{{ 'Selling Price is Mandatory.' }}</small
+          >
+        </div>
+      </div>
+
+      <app-car [cars]="sale.cars"></app-car>
+      <app-customer [customers]="sale.customers"></app-customer>
+
+      <button
+        class="btn"
+        type="submit"
+        *ngIf="mode === 'edit'"
+        [disabled]="salesForm.invalid"
+        [ngClass]="{
+          'form-valid': !salesForm.invalid,
+          'form-invalid': salesForm.invalid
+        }"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</ng-container>

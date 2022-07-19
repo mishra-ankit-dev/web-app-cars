@@ -1,0 +1,31 @@
+<div class="px-0 py-2 m-0 form-wrapper">
+  <form class="p-0 mx-4 form-group" [formGroup]="salesFilterForm">
+    <div class="grid grid-cols-1 gap-x-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="form-check form-switch">
+        <label for="sales-filter-name" class="form-check-label form-label"
+          >Sales ID</label
+        >
+        <input
+          type="radio"
+          value="SalesID"
+          id="sales-filter-name"
+          class="form-check-input"
+          formControlName="filter"
+        />
+      </div>
+      <div class="form-check form-switch">
+        <label for="sales-filter-category" class="form-check-label form-label"
+          >Customer ID</label
+        >
+        <input
+          type="radio"
+          value="CustomerID"
+          id="sales-filter-category"
+          class="form-check-input"
+          formControlName="filter"
+        />
+      </div>
+      <app-search-box [width]="'w-full'" class="col-span-2"></app-search-box>
+    </div>
+  </form>
+</div>

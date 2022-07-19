@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  @import 'base/font.scss';
+  @import 'base/document.scss';
+  @import 'base/headings.scss';
+}
+
+@layer components {
+  @import 'components/link.scss';
+}
+
+@layer utilities {
+  @import 'utilities/form.scss';
+  @import 'utilities/navbar.scss';
+}

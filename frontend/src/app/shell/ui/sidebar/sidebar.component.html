@@ -1,0 +1,101 @@
+<div class="sidebar" [ngClass]="isSidebarOpen ? 'w-48' : 'w-14'">
+  <button
+    type="button"
+    class="flex p-2"
+    name="sidebar-toggle"
+    aria-label="sidebar-toggle"
+    [ngClass]="{ 'ml-auto': isSidebarOpen }"
+    (click)="isSidebarOpen = !isSidebarOpen"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        *ngIf="isSidebarOpen"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+      />
+      <path
+        *ngIf="!isSidebarOpen"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 5l7 7-7 7M5 5l7 7-7 7"
+      />
+    </svg>
+  </button>
+
+  <div class="sidebar-wrapper">
+    <app-search-box class="my-2" *ngIf="isSidebarOpen"></app-search-box>
+    <div class="sidebar-link-wrapper">
+      <button
+        class="sidebar-link"
+        name="authentication"
+        routerLinkActive="active"
+        aria-label="authentication"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        [routerLink]="
+          (isLoggedIn$ | async)
+            ? [configPath.auth.root, configPath.auth.signOut]
+            : [configPath.auth.root]
+        "
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          <i
+            aria-hidden="true"
+            class="bi bi-box-arrow-right"
+            *ngIf="isLoggedIn$ | async"
+          ></i>
+          <i
+            aria-hidden="true"
+            class="bi bi-person"
+            *ngIf="(isLoggedIn$ | async) === false"
+          ></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ (isLoggedIn$ | async) ? 'Sign Out' : 'Auth' }}
+        </span>
+      </button>
+
+      <button
+        name="settings"
+        class="sidebar-link"
+        aria-label="settings"
+        routerLinkActive="active"
+        [routerLink]="[configPath.sale.root]"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          <i class="bi bi-receipt" aria-hidden="true"></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ 'Sales' }}
+        </span>
+      </button>
+
+      <button
+        name="admin"
+        target="_blank"
+        aria-label="admin"
+        class="sidebar-link"
+        rel="noopener noreferrer"
+        routerLinkActive="active"
+        (click)="navigateToAdmin()"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          <i class="bi bi-people" aria-hidden="true"></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ 'Admin' }}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
