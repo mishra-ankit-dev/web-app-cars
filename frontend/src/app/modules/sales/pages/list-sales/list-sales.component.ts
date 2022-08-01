@@ -16,7 +16,7 @@ export class ListSalesComponent implements OnInit {
     this.sales$ = this._salesService.sales$();
   }
 
-  // REFRESH UI ON CONFIGURATION ENTRY CRUD OPERATIONS
+  // REFRESH UI ON SALES CRUD OPERATIONS
   onSaleDelete(event: any): void {
     console.log(event);
     this.ngOnInit();

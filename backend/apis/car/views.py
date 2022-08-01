@@ -1,4 +1,4 @@
-from rest_framework import views, status
+from rest_framework import views, status, permissions
 from rest_framework.response import Response
 
 from .models import Car
@@ -8,6 +8,7 @@ from .serializers import CarSerializer
 class CarListAPIViews(views.APIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         try:
@@ -29,6 +30,7 @@ class CarListAPIViews(views.APIView):
 class CarDetailAPIViews(views.APIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk, *args, **kwargs):
         try:

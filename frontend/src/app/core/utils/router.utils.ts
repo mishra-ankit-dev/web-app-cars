@@ -11,6 +11,7 @@ export const ROUTER_UTILS = {
     },
     sale: {
       root: 'sales',
+      home: '',
       create: 'create',
       viewAll: 'view-all',
       viewOrEdit: 'view-or-edit',

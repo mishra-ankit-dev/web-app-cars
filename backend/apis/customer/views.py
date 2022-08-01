@@ -1,4 +1,4 @@
-from rest_framework import views, status
+from rest_framework import views, status, permissions
 from rest_framework.response import Response
 
 from .models import Customer
@@ -8,6 +8,7 @@ from .serializers import CustomerSerializer
 class CustomerListAPIViews(views.APIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         try:
@@ -29,6 +30,7 @@ class CustomerListAPIViews(views.APIView):
 class CustomerDetailAPIViews(views.APIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk, *args, **kwargs):
         try:

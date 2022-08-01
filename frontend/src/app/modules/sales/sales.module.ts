@@ -13,11 +13,13 @@ import { FilterCustomersComponent } from './components/filter-customers/filter-c
 import { ViewOrEditSaleComponent } from './pages/view-or-edit-sale/view-or-edit-sale.component';
 import { CarsComponent } from './components/car/car.component';
 import { CustomersComponent } from './components/customer/customer.component';
+import { SalesHomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     ListSalesComponent,
     SaleComponent,
+    SalesHomeComponent,
     CreateSaleComponent,
     ViewOrEditSaleComponent,
     SalesFilterComponent,
